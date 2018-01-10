@@ -1,9 +1,19 @@
+%Este codigo implementa uma funcao de regressão polinomial.
+
 function [desviopadrao, coeficientes, residuos, SSE, R] = regressaoPolinomial(x, y, m)    
+    
+    %Inicializacao das matrizes relacionadas as equações normais.
     matriz = zeros(m+1,m+1);
     independentes = zeros(m+1,1);
     
+    %Verificacao da condicao de tamanhos iguais das amostras x e y.
+    if length(x) != length(y)
+        error('As amostras x e y devem ter tamanhos iguais para execucao do metodo.');
+    end
+   
+    %Verificacao da condicao do grau do polinomio ser menor ou igual ao tamanho do vetor x. 
     if m > length(x) 
-        error ('There is not enought data for the polynom of required m');
+        error ('Nao existem dados suficientes para um polinomio do grau desejado');
     end
     
     potencias = zeros(2*m+1,1);    
@@ -19,10 +29,11 @@ function [desviopadrao, coeficientes, residuos, SSE, R] = regressaoPolinomial(x,
         matriz(k+1,:) = potencias((k+1):(k+1+m)); 
     end
     
+    %Calculo dos coeficientes 'a' da curva ajustada.
     coeficientes = matriz\independentes; 
     
+    %Calculo do desvio padrao.
     desviopadrao = std(y);
-  
     
     xx = 0:0.1:max(x);    
     yy = zeros(1,length(xx));
@@ -43,10 +54,15 @@ function [desviopadrao, coeficientes, residuos, SSE, R] = regressaoPolinomial(x,
     end
    
     SSE = sum(residuos.^2);
+    %Calculo do erro padrao.
     erropadrao = sqrt(SSE/(length(x) - (m+1)));
+    
     quadradodesvios = var(y)*length(y);
+    
+    %Calculo do coeficiente de determinacao.
     coefdet = (quadradodesvios - SSE)/quadradodesvios;
 
+    % Exibição dos resultados
     printf("REGRESSAO POLINOMIAL\n");
     
     printf("Coeficiente das equacoes normais:\n");
