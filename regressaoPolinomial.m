@@ -82,5 +82,13 @@ function [desviopadrao, coeficientes, residuos, SSE, R] = regressaoPolinomial(x,
     
     printf("O coeficiente de determinacao para este caso foi:");
     disp(coefdet);
+    
+    if coefdet != 0
+      printf("\nNeste caso houve melhora ao realizar o ajuste.");
+    else
+      printf("\nNeste caso nao houve melhora ao realizar o ajuste.");
+    end
+ 
+    printf(["\nCom a aplicacao deste metodo de regressao polinomial, foi explicado ", num2str(coefdet*100),"\nda incerteza em relacao a amostra."]);
 
 end
