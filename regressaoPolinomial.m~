@@ -87,7 +87,7 @@ function [desviopadrao, coeficientes, residuos, SSE] = regressaoPolinomial(x, y,
     if coefdet ~= 0
       fprintf('\nNeste caso houve melhora ao realizar o ajuste.');
     else
-      fprintf('\nNeste caso nao houve melhora ao realizar o ajuste.');
+      fprintf(\nNeste caso nao houve melhora ao realizar o ajuste.');
     end
     
     fprintf('\nCom a aplicacao deste metodo de regressao polinomial, foi explicado %1.2f%%',coefdet*100);
