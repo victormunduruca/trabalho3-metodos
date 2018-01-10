@@ -1,14 +1,14 @@
-x = [0, 1, 2, 3, 4, 5];
-m = 2;
-y = [2.1 7.7 13.6 27.2 40.9 61.1];
+% x = [0, 1, 2, 3, 4, 5];
+% m = 2;
+% y = [2.1 7.7 13.6 27.2 40.9 61.1];
 
-% x = [50, 80, 130, 200, 250, 350, 450, 550, 700];
-% m = 3;
-% y = [99, 177, 202, 248, 229, 219, 173, 142, 72];
+x = [50, 80, 130, 200, 250, 350, 450, 550, 700];
+m = 3;
+y = [99, 177, 202, 248, 229, 219, 173, 142, 72];
 
-regressaoPolinomial(x, y, 2);
+regressaoPolinomial(x, y, m);
 
-function [coeficientes, residuos, SSE, R] = regressaoPolinomial(x, y, m)    
+function [desviopadrao, coeficientes, residuos, SSE, R] = regressaoPolinomial(x, y, m)    
     matriz = zeros(m+1,m+1);
     independentes = zeros(m+1,1);
     
@@ -31,7 +31,7 @@ function [coeficientes, residuos, SSE, R] = regressaoPolinomial(x, y, m)
     
     coeficientes = matriz\independentes; 
     
-    plot(x,y,'k*'); 
+    desviopadrao = std(y);
   
     
 %     xx = 0:0.1:max(x);    
